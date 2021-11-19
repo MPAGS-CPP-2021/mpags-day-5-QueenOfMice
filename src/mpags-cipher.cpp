@@ -1,4 +1,5 @@
 #include "CaesarCipher.hpp"
+#include "Cipher.hpp"
 #include "CipherMode.hpp"
 #include "CipherType.hpp"
 #include "PlayfairCipher.hpp"

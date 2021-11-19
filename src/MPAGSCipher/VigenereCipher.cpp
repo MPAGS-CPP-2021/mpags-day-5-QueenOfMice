@@ -21,7 +21,7 @@ void VigenereCipher::setKey( const std::string& key ) {
         // xxx hardcoded default here -- better have this elsewhere or fine?
         key_ = "KEY";
     }
-    // loop over key
+    // loop over each letter in the key
     for (char& c : key_) {
         // find letter pos in alph
         auto it = find(Alphabet::alphabet.begin(), Alphabet::alphabet.end(), c);
@@ -53,17 +53,28 @@ VigenereCipher::VigenereCipher(const std::string& key) {
 }
 
 
-std::string VigenereCipher::applyCipher( const std::string& inputText, const CipherMode /*cipherMode*/ ) const {
+std::string VigenereCipher::applyCipher( const std::string& inputText, const CipherMode mode) const {
+
+    std::string outputText = "";
 
     // for each letter in input
+    for (std::size_t count = 0; count < inputText.size(); count++) {
+        // find corresponding letter in key
+        // modulo takes care of repeating/trunctating as reuqired
+        char lettInKey = key_.at(count%key_.size());
 
-        // find corr letter in key
-        // repeating/trunctating as reuqired
-        // find caes ciph from lookup
-        // run de/en cryption
+        // find caesar cipher from lookup
+        CaesarCipher currCiph = charLookup_.find(lettInKey)->second;
+
+        // get current letter in input as a string and run de/encryption
+        std::string currStr = ""; 
+        currStr += inputText.at(count);
+        std::cout << currStr << std::endl;
+
         // add result to output
-
-    std::string outputText{inputText};
+        outputText += currCiph.applyCipher(currStr, mode);  
+        std::cout << currCiph.applyCipher(currStr, mode) << std::endl;
+    }
     return outputText;
 }
 
