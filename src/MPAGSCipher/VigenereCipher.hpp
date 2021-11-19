@@ -1,8 +1,9 @@
 #ifndef VIGENERECIPHER_HPP
 #define VIGENERECIPHER_HPP
 
-#include "CipherMode.hpp"
+#include "Alphabet.hpp"
 #include "CaesarCipher.hpp"
+#include "CipherMode.hpp"
 
 #include <map>
 #include <string>
