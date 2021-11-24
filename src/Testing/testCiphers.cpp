@@ -35,7 +35,7 @@ TEST_CASE("Playfair Cipher encryption and decryption", "[playfair]") {
 TEST_CASE("Vigenere Cipher encryption and decryption", "[vigenere]") {
   VigenereCipher cc{"abc"};
   const std::string inVig = "1Te!sSt;";
-  const std::string outVig = "OMCTDQSS";
+  const std::string outVig = "OOGTFUSU";
   REQUIRE (testCipher(cc, CipherMode::Encrypt, inVig, outVig));
-  REQUIRE (testCipher(cc, CipherMode::Decrypt, outVig, "OOGTFUSU"));
+  REQUIRE (testCipher(cc, CipherMode::Decrypt, outVig, "ONETESST"));
 }
