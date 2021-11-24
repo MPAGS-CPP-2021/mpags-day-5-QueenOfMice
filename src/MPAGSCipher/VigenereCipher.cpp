@@ -69,11 +69,9 @@ std::string VigenereCipher::applyCipher( const std::string& inputText, const Cip
         // get current letter in input as a string and run de/encryption
         std::string currStr = ""; 
         currStr += inputText.at(count);
-        std::cout << currStr << std::endl;
 
         // add result to output
         outputText += currCiph.applyCipher(currStr, mode);  
-        std::cout << currCiph.applyCipher(currStr, mode) << std::endl;
     }
     return outputText;
 }

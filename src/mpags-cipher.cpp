@@ -1,5 +1,6 @@
 #include "CaesarCipher.hpp"
 #include "Cipher.hpp"
+#include "CipherFactory.hpp"
 #include "CipherMode.hpp"
 #include "CipherType.hpp"
 #include "PlayfairCipher.hpp"
@@ -94,24 +95,9 @@ int main(int argc, char* argv[])
 
     std::string outputText;
 
-    switch (settings.cipherType) {
-        case CipherType::Caesar: {
-            // Run the Caesar cipher (using the specified key and encrypt/decrypt flag) on the input text
-            CaesarCipher cipher{settings.cipherKey};
-            outputText = cipher.applyCipher(inputText, settings.cipherMode);
-            break;
-        }
-        case CipherType::Playfair: {
-            PlayfairCipher cipher{settings.cipherKey};
-            outputText = cipher.applyCipher(inputText, settings.cipherMode);
-            break;
-        }
-        case CipherType::Vigenere: {
-            VigenereCipher cipher{settings.cipherKey};
-            outputText = cipher.applyCipher(inputText, settings.cipherMode);
-            break;
-        }
-    }
+    // create Cipher object and apply the cipher to get the de/encoded text
+    auto cipher{cipherFactory(settings.cipherType, settings.cipherKey)};
+    outputText = cipher->applyCipher(inputText, settings.cipherMode);
 
     // Output the encrypted/decrypted text to stdout/file
     if (!settings.outputFile.empty()) {
